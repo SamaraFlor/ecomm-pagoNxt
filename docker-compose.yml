@@ -1,0 +1,35 @@
+version: '3'
+services:
+   mongodb:
+    restart: always
+    image: mongo
+    container_name: mongo_db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=senha123
+      - MONGO_INITDB_DATABASE=accounts
+    ports: 
+      - 27017:27017
+
+product:
+    image: pagonxt/product
+    build: product
+    volumes:
+      - ./pagonxt:/product
+    ports:
+      - 3001:3001
+
+account:
+    image: pagonxt/account
+    build: account
+    volumes:
+      - ./pagonxt:/account
+    ports:
+      - 3000:3000
+    
+
+
+
+ 
+
+  

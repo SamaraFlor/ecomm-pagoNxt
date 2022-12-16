@@ -1,0 +1,25 @@
+{
+  "name": "account",
+  "version": "1.0.0",
+  "main": "src/use-case/createUserAccount.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon test/createUserAccount.test.js",
+    "test": "nodemon src/use-case/createUserAccount.js"
+  },
+  "author": "Samara Flor",
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.8.0"
+  },
+  "description": ""
+}
