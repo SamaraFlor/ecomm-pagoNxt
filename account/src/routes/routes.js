@@ -1,23 +1,18 @@
-
-import { Router } from 'express';
-import { createUserUseCase } from '../use-case/createUserAccount.js';
+import { createUserUseCase } from "../src/use-case/createUserAccount.js";
+import { Router }  from "express";
 
 const router = new Router();
 
 router.post('/accounts', function(request, response) {
     const { name, email, password } = request.body;
-    createAccountUseCase(name, email, password)
-        .then(createdAccount => {
-            response.status(201).json(createdAccount)
+    createUserUseCase(name, email, password)
+        .then(createUserUseCase => {
+            delete createUserUseCase.password
+            response.status(201).json(createUserUseCase)
         })
         .catch(error => {
             response.status(400).json({ status: 'error', message: error.message });
         }); 
 });
 
-router.get('/accounts', function(request, response) {
-    listAccountsUseCase().then(accounts => {
-        response.json(accounts);
-    });
-});
-
+export { router };

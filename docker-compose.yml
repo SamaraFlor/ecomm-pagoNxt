@@ -1,6 +1,7 @@
 version: '3'
 services:
-   mongodb:
+  
+  mongodb:
     restart: always
     image: mongo
     container_name: mongo_db
@@ -12,20 +13,21 @@ services:
       - 27017:27017
 
 product:
-    image: pagonxt/product
+    image: ecomm/product
     build: product
     volumes:
-      - ./pagonxt:/product
-    ports:
-      - 3001:3001
-
-account:
-    image: pagonxt/account
-    build: account
-    volumes:
-      - ./pagonxt:/account
+      - ./product:/app
     ports:
       - 3000:3000
+
+account:
+    image: ecomm/account
+    build: account
+    volumes:
+       - ./account:/app
+    ports:
+      - 3000:3000
+
     
 
 
