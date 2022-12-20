@@ -1,4 +1,4 @@
-FROM node:18
+FROM node
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT npm start
+ENTRYPOINT [ "npm", "start" ]
 
 
 

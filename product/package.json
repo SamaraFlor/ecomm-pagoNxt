@@ -1,24 +1,25 @@
 {
   "name": "product",
   "version": "1.0.0",
-  "main": "src/use-case/createProductUseCase.js",
+  "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon testcreateProductUseCase.test.js",
-    "test": "nodemon src/use-case/createProductUseCase.js"
+    "start:dev": "nodemon src/main.js",
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Samara Flor",
-  "license": "MIT",
-  "directories": {
-    "test": "test"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
-  "description": "",
+  "license": "ISC",
   "dependencies": {
     "-": "^0.0.1",
     "D": "^1.0.0",
     "express": "^4.18.2"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }

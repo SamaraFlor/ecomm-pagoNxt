@@ -1,13 +1,16 @@
+import express from 'express';
+import { router } from './routes.js';
 
-import express, { json } from 'express';
-import { router } from './router/routes.js';
-
-const port = 3001;
 const app = express();
 
-app.use(json());
+app.use(express.json());
+
+app.get('/health', (request, response) => {
+    return response.send();
+});
+
 app.use(router);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(3000, () => {
+    console.log('products service is running');
 });

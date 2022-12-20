@@ -1,32 +1,25 @@
 version: '3'
 services:
-  
-  mongodb:
-    restart: always
+  product:
+    image: pagonxt/product
+    build: product # docker build ./product -t pagonxt/product
+    ports:
+      - 3000:3000
+  account:
+    image: pagonxt/account
+    build: account # docker build ./account -t pagonxt/account
+    ports:
+      - 3001:3000
+
+  account-database:
     image: mongo
-    container_name: mongo_db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=senha123
-      - MONGO_INITDB_DATABASE=accounts
-    ports: 
+      MONGO_INITDB_DATABASE: accounts
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: senha123
+
+    ports:
       - 27017:27017
-
-product:
-    image: ecomm/product
-    build: product
-    volumes:
-      - ./product:/app
-    ports:
-      - 3000:3000
-
-account:
-    image: ecomm/account
-    build: account
-    volumes:
-       - ./account:/app
-    ports:
-      - 3000:3000
 
     
 
