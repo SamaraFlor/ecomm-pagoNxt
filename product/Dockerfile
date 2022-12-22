@@ -1,13 +1,17 @@
-FROM node
+FROM node:18
 
 WORKDIR /app
 
-COPY package.json package-lock.json /app/
+RUN npm config set strict-ssl=false
+
+COPY package*.json /app/
 
 RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3001
 
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT npm start
+
+

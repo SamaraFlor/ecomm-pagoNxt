@@ -1,19 +1,21 @@
-import { Router } from "express";
-import { createUserUseCase } from "./use-case/createUserAccount.js";
+import express from 'express';
+
+import { router } from './routes.js';
+
+import swaggerUi from "swagger-ui-express";
+
+import swaggerDocs from "./api-docs.json" assert {type: "json"}; ;
 
 
-const router = Router();
+const app = express();
 
-router.post('/accounts', async (request, response) => {
-    const { name, email, password } = request.body;
-    const createdUser = await createUserUseCase(name, email, password);
+app.use(express.json());
 
-    return response.status(201).json({
-        id: createdUser._id,
-        name: createdUser.name,
-        email: createdUser.email,
-        createdDate: createdUser.createdDate,
-    });
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
+
+app.use(router);
+
+app.listen(3000, () => {
+    console.log('accounts service is running');
 });
-
-export { router };

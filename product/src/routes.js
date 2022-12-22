@@ -14,7 +14,7 @@ router.post('/products', async (request, response) => {
 router.get('/products', async (request, response) => {
     const products = await listProductsUseCase();
 
-    return response.json(products);
+    return response.status(201).json(products);
 });
 
 export { router };

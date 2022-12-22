@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "start:dev": "nodemon src/main.js",
-    "start": "node src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js"
   },
   "keywords": [],
   "author": "Samara Flor",
@@ -15,7 +14,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
-    "mongodb": "^4.12.1"
+    "mongodb": "^4.12.1",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
