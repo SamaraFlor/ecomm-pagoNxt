@@ -1,177 +1,165 @@
 {
-    "openapi": "3.0.0",
+    "openapi": "3.0.1",
     "info": {
-        "title": "API Product",
-        "description": " Api for handling Eccomerce products.",
-        "contact": {
-            "email": "ecomerce@ecomerce.com"
-        },
-        "version": "1.0.0"
+      "version": "1.0.0",
+      "title": "Product Restful API",
+      "description": "Restful API that deals with Products",
+      "contact": {
+        "name": "Dev Contacts",
+        "email": "samara@example.com"
+      }
     },
     "servers": [
-        {
-            "url": "http://localhost:3001",
-            "description": "API de teste"
-        }
+      {
+        "url": "http://localhost:3000",
+        "description": "Server 1"
+      }
     ],
     "paths": {
-        "/products": {
-            "post": {
-                "tags": ["Product"],
-                "summary": "Product registration",
-                "description": "Route will be responsible for registering a new product",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Product"
-                            },
-                            "examples": {
-                                "product": {
-                                    "value": {
-                                        "produto": {
-                                            "nome": "iphone 11",
-                                            "valor": "8000",
-                                            "quantidade": "11",
-                                            "descricao": "iphone 11",
-                                            "categoria": "telephone",
-                                            "caracteristicas": [
-                                                {
-                                                    "nome": "iphone 11",
-                                                    "descricao": " telephone"
-                                                }
-                                            ],
-                                            "imagens": [
-                                                {
-                                                    "url": "https://pixabay.com/pt/photos/iphone-13-iphone-smartphone-celular-6655517/",
-                                                    "descricao": "Telephone iphone 11"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Sucess!",
-                        "content": {
-                            "application/json": {
-                                "examples": {
-                                    "products": {
-                                        "value": {
-                                            "id": "7",
-                                            "createdDate": "2020-10-11",
-                                            "produto": {
-                                                "nome": "iphone 11",
-                                                "valor": "8000",
-                                                "quantidade": "10",
-                                                "descricao": "Telephone iphone 11",
-                                                "categoria": "telephone",
-                                                "caracteristicas": [
-                                                    {
-                                                        "nome": "iphone 11",
-                                                        "descricao": "Telephone iphone 11"
-                                                    }
-                                                ],
-                                                "imagens": [
-                                                    {
-                                                        "url": "https://pixabay.com/pt/photos/iphone-13-iphone-smartphone-celular-6655517/",
-                                                        "descricao": "iphone 11"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+      "/products": {
+        "summary": "creates a product",
+        "description": "Given provided product data, creates a product in the database",
+        "post": {
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductData"
                 }
-            },
-            "get": {
-                "tags": [
-                    "Product"
-                ],
-                "summary": "List of Registered Products",
-                "description": "Route will be responsible for listing the registered products",
-                "responses": {
-                    "201": {
-                        "description": "Sucess!",
-                        "content": {
-                            "application/json": {
-                                "examples": {
-                                    "products": {
-                                        "value": {
-                                            "id": "8",
-                                            "createdDate": "2022-12-09",
-                                            "produto": {
-                                                "nome": "iphone 11",
-                                                "valor": "1200",
-                                                "quantidade": "11",
-                                                "descricao": "Telephone iphone 11",
-                                                "categoria": "telephone",
-                                                "caracteristicas": [
-                                                    {
-                                                        "nome": "iphone 11",
-                                                        "descricao": "Telephone iphone 11"
-                                                    }
-                                                ],
-                                                "imagens": [
-                                                    {
-                                                        "url": "https://pixabay.com/pt/photos/iphone-13-iphone-smartphone-celular-6655517/",
-                                                        "descricao": "iphone 11"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+              }
             }
+          },
+          "responses": {
+            "201": {
+              "description": "Product created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreatedProductData"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductData"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
+      }
     },
     "components": {
-        "schemas": {
-            "Product": {
-                "type": "object",
-                "properties": {
-                    "nome": {
-                        "type": "string"
-                    },
-                    "valor": {
-                        "type": "Decimal"
-                    },
-                    "quantidade": {
-                        "type": "number"
-                    },
-                    "descricao": {
-                        "type": "string"
-                    },
-                    "categoria": {
-                        "type": "string"
-                    },
-                    "caracteristicas": {
-                        "type": "array",
-                        "items": {
-                            "nome": "string",
-                            "descricao": "string"
-                        }
-                    },
-                    "imagens": {
-                        "type": "array",
-                        "items": {
-                            "url": "string",
-                            "descricao": "string"
-                        }
-                    }
-                }
+      "schemas": {
+        "ImagemData": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
             }
+          }
+        },
+        "CaracteristicaData": {
+          "type": "object",
+          "properties": {
+            "nome": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
+            }
+          }
+        },
+        "ProductData": {
+          "type": "object",
+          "properties": {
+            "usuarioId": {
+              "type": "string"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
+            },
+            "categoria": {
+              "type": "string"
+            },
+            "quantidade": {
+              "type": "integer"
+            },
+            "valor": {
+              "type": "number"
+            },
+            "caracteristicas": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CaracteristicaData"
+              }
+            },
+            "imagens": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ImagemData"
+              }
+            }
+          }
+        },
+        "CreatedProductData": {
+          "type": "object",
+          "properties": {
+            "usuarioId": {
+              "type": "string"
+            },
+            "createdDate": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
+            },
+            "categoria": {
+              "type": "string"
+            },
+            "quantidade": {
+              "type": "integer"
+            },
+            "valor": {
+              "type": "number"
+            },
+            "caracteristicas": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CaracteristicaData"
+              }
+            },
+            "imagens": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ImagemData"
+              }
+            }
+          }
         }
+      }
     }
-}
+  }

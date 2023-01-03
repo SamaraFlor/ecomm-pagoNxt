@@ -1,6 +1,7 @@
 import { Router } from 'express';
+
 import { createProductUseCase } from './use-case/createProductUseCase.js';
-import { listProductsUseCase } from './use-case/listProducts.js';
+import { listProductsUseCase } from './use-case/listProductsUseCase.js';
 
 const router = Router();
 
@@ -14,7 +15,7 @@ router.post('/products', async (request, response) => {
 router.get('/products', async (request, response) => {
     const products = await listProductsUseCase();
 
-    return response.status(201).json(products);
+    return response.json(products);
 });
 
 export { router };

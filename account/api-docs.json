@@ -3,7 +3,7 @@
     "openapi": "3.0.0",
     "info": {
       "title": "Api Account",
-      "description": "Eecommerce documentation part of accounts",
+      "description": "Ecommerce documentation part of accounts",
       "contact":{
         "email": "samara.silva@pagonxt.com"
       },

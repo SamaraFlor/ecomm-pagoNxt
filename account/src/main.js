@@ -4,10 +4,13 @@ import { router } from './routes.js';
 
 import swaggerUi from "swagger-ui-express";
 
-import swaggerDocs from "..api-docs.json" assert {type: "json"}; ;
+
+import swaggerDocs from "../api-docs.json" assert {type: "json"};
 
 
 const app = express();
+
+
 
 app.use(express.json());
 
