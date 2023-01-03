@@ -1,32 +1,32 @@
 version: '3'
 services:
-  
-  mongodb:
-    restart: always
+
+  account:
+    image: eccom/account
+    build: account
+    ports:
+      - 3000:3000
+      
+  account-database:
     image: mongo
-    container_name: mongo_db
+    container_name: account-database   
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=senha123
+      - MONGO_INITDB_ROOT_PASSWORD=senha123 
       - MONGO_INITDB_DATABASE=accounts
-    ports: 
+    ports:
       - 27017:27017
 
-product:
-    image: ecomm/product
+  product:
+    image: eccom/product
     build: product
-    volumes:
-      - ./product:/app
     ports:
-      - 3000:3000
+      - 3001:3000
 
-account:
-    image: ecomm/account
-    build: account
-    volumes:
-       - ./account:/app
-    ports:
-      - 3000:3000
+
+# para baixar imagem :    docker build . -t eccom/product
+# para baixar imagem :    docker build . -t eccom/account 
+
 
     
 

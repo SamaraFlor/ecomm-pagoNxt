@@ -1,6 +1,6 @@
 import { createUserUseCase } from '../../src/use-case/createUserAccount.js';
 
-const user1 = await createUserUseCase('Rita', 'rita@mail.com', 'ritalinda');
-const user2 = await createUserUseCase('Josué', 'josue@mail.com', '123bacana');
+const user1 = await createUserUseCase('Samara', 'samara@mail.com', 'samara');
+const user2 = await createUserUseCase('Maria', 'maria@mail.com', '123senha');
 
 console.log(user1, user2);

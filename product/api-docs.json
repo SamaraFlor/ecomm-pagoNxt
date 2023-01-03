@@ -1,0 +1,177 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Product",
+        "description": " Api for handling Eccomerce products.",
+        "contact": {
+            "email": "ecomerce@ecomerce.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3001",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "post": {
+                "tags": ["Product"],
+                "summary": "Product registration",
+                "description": "Route will be responsible for registering a new product",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "produto": {
+                                            "nome": "iphone 11",
+                                            "valor": "8000",
+                                            "quantidade": "11",
+                                            "descricao": "iphone 11",
+                                            "categoria": "telephone",
+                                            "caracteristicas": [
+                                                {
+                                                    "nome": "iphone 11",
+                                                    "descricao": " telephone"
+                                                }
+                                            ],
+                                            "imagens": [
+                                                {
+                                                    "url": "https://pixabay.com/pt/photos/iphone-13-iphone-smartphone-celular-6655517/",
+                                                    "descricao": "Telephone iphone 11"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucess!",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "products": {
+                                        "value": {
+                                            "id": "7",
+                                            "createdDate": "2020-10-11",
+                                            "produto": {
+                                                "nome": "iphone 11",
+                                                "valor": "8000",
+                                                "quantidade": "10",
+                                                "descricao": "Telephone iphone 11",
+                                                "categoria": "telephone",
+                                                "caracteristicas": [
+                                                    {
+                                                        "nome": "iphone 11",
+                                                        "descricao": "Telephone iphone 11"
+                                                    }
+                                                ],
+                                                "imagens": [
+                                                    {
+                                                        "url": "https://pixabay.com/pt/photos/iphone-13-iphone-smartphone-celular-6655517/",
+                                                        "descricao": "iphone 11"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "List of Registered Products",
+                "description": "Route will be responsible for listing the registered products",
+                "responses": {
+                    "201": {
+                        "description": "Sucess!",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "products": {
+                                        "value": {
+                                            "id": "8",
+                                            "createdDate": "2022-12-09",
+                                            "produto": {
+                                                "nome": "iphone 11",
+                                                "valor": "1200",
+                                                "quantidade": "11",
+                                                "descricao": "Telephone iphone 11",
+                                                "categoria": "telephone",
+                                                "caracteristicas": [
+                                                    {
+                                                        "nome": "iphone 11",
+                                                        "descricao": "Telephone iphone 11"
+                                                    }
+                                                ],
+                                                "imagens": [
+                                                    {
+                                                        "url": "https://pixabay.com/pt/photos/iphone-13-iphone-smartphone-celular-6655517/",
+                                                        "descricao": "iphone 11"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "Decimal"
+                    },
+                    "quantidade": {
+                        "type": "number"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "categoria": {
+                        "type": "string"
+                    },
+                    "caracteristicas": {
+                        "type": "array",
+                        "items": {
+                            "nome": "string",
+                            "descricao": "string"
+                        }
+                    },
+                    "imagens": {
+                        "type": "array",
+                        "items": {
+                            "url": "string",
+                            "descricao": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

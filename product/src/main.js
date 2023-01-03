@@ -1,13 +1,18 @@
+import express from 'express';
+import { router } from './routes.js';
 
-import express, { json } from 'express';
-import { router } from './router/routes.js';
+import swaggerUi from "swagger-ui-express";
 
-const port = 3001;
+import swaggerDocs from "../api-docs.json" assert {type: "json"}; 
+
 const app = express();
 
-app.use(json());
+app.use(express.json());
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
 app.use(router);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(3001, () => {
+    console.log('products service is running');
 });
