@@ -1,7 +1,6 @@
 import { Router } from 'express';
-
+import {listProductsUseCase} from './use-case/listProducts.js'
 import { createProductUseCase } from './use-case/createProductUseCase.js';
-import { listProductsUseCase } from './use-case/listProductsUseCase.js';
 
 const router = Router();
 

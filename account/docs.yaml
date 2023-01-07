@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Accounts API
+  description: Restful API that deals with Accounts
+  contact:
+    name: Dev Contacts
+    email: samara@example.com
+servers:
+  - url: 'http://localhost:3001'
+    description: Server 1
+paths:
+  /accounts:
+    summary: creates a account
+    description: 'Given provided account data, creates a account in the database'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountData'
+      responses:
+        201:
+          description: Account created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedAccountData'
+
+components:
+  schemas:
+    AccountData:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    CreatedAccountData:
+      type: object
+      properties:
+        id: 
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        createdDate:
+          type: string

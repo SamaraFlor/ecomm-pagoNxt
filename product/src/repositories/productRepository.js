@@ -1,18 +1,13 @@
-import { randomUUID } from 'node:crypto';
 
-const products = [];
+import {Product} from "../../db/models/products.js"
+import { listProductsUseCase } from "../use-case/listProducts.js";
 
 export async function saveProduct(product) {
-    const id = randomUUID();
-    const createdDate = new Date().toISOString().substring(0, 10);
-
-    const productCreated = { id, createdDate, ...product };
-
-    products.push(productCreated);
-
-    return productCreated;
+    const createdProduct = await Product.create(product);
+    await createdProduct.save();
+    return createdProduct;
 }
 
 export async function findProducts() {
-    return products;
+    return listProductsUseCase;
 }

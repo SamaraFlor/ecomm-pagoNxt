@@ -1,31 +1,44 @@
 version: '3'
 services:
+  product:
+    image: eccom/product
+    build: product # docker build ./product -t eccom/product
+    entrypoint: 'npm run start:dev'
+    volumes:
+      - ./product:/app
+    ports:
+      - 3001:3000
+  
+  product-database:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: products
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpass
+    ports:
+      - 3306:3306
 
   account:
     image: eccom/account
-    build: account
+    build: account # docker build ./account -t pagonxt/account
+    entrypoint: 'npm run start:dev'
+    volumes:
+      - ./account:/app
     ports:
       - 3000:3000
-      
+
   account-database:
     image: mongo
-    container_name: account-database   
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=senha123 
-      - MONGO_INITDB_DATABASE=accounts
+      MONGO_INITDB_DATABASE: accounts
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: senha123
+
     ports:
       - 27017:27017
 
-  product:
-    image: eccom/product
-    build: product
-    ports:
-      - 3001:3000
 
-
-# para baixar imagem :    docker build . -t eccom/product
-# para baixar imagem :    docker build . -t eccom/account 
 
 
     

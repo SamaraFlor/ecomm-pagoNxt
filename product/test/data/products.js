@@ -1,3 +1,4 @@
+import { text } from 'express';
 import { randomUUID } from 'node:crypto';
 
 export const productExample = {
@@ -36,3 +37,9 @@ export const productExample = {
         }
     ],
 }
+
+
+
+
+
+

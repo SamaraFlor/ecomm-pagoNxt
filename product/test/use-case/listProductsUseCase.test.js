@@ -1,4 +1,3 @@
-
 import { createProductUseCase } from "../../src/use-case/createProductUseCase.js"
 import { listProductsUseCase } from "../../src/use-case/listProductsUseCase.js";
 import { productExample } from "../data/products.js";
