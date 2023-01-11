@@ -2,6 +2,7 @@
   "development": {
     "username": "mysqluser",
     "password": "mysqlpass",
+    "port": "3006",
     "database": "products",
     "host": "127.0.0.1",
     "dialect": "mysql"

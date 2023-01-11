@@ -8,7 +8,6 @@ import client from './repositories/databaseClient.js';
 
 const swaggerDocs = yaml.load('./docs.yaml');
 
-
 const app = express();
 
 app.use(express.json());
@@ -25,8 +24,6 @@ app.listen(3000, () => {
     console.log('products service is running');
 
     client.authenticate()
-    .then(()=>{console.log("database connected!")})
-    .catch(error => {console.error(error)});
-
+        .then(() => { console.log('database connected') })
+        .catch(error => { console.error(error)});
 });
-
