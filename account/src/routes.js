@@ -15,7 +15,6 @@ router.post('/accounts', async (request, response) => {
         email: createdUser.email,
         createdDate: createdUser.createdDate,
     });
-    
 });
 
 export { router };
