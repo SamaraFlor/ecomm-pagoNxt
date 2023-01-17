@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:dev": "nodemon src/main.js",
+    "start:dev": "env-cmd nodemon src/main.js",
     "start": "node src/main.js",
-    "test": "jest"
+    "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
   },
   "keywords": [],
   "author": "Samara Flor",
@@ -22,7 +22,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "eslint": "^8.31.0",
+    "env-cmd": "^10.1.0",
     "jest": "^29.3.1",
     "nodemon": "^2.0.20",
     "supertest": "^6.3.3"

@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-export const client = new MongoClient('mongodb://mongouser:mongopass@localhost:27017');
+export const client = new MongoClient(process.env.DATABASE_URL);
 
 export async function getUsersCollection(client) {
     const db = client.db('accounts');
