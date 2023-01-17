@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import { createUserUseCase } from "./use-case/createUserAccount.js";
 
 
@@ -17,4 +16,6 @@ router.post('/accounts', async (request, response) => {
     });
 });
 
-export { router };
+
+
+export {router}
