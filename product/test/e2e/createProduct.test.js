@@ -1,21 +1,16 @@
 import request from 'supertest';
 import {app} from  '../../src/app.js';
-import client from '../../src/repositories/databaseClient.js';
+import { findProducts } from '../../src/repositories/productRepository.js';
 import { productExample } from '../data/products.js';
+import { cleanProduct } from '../helpers/product.js';
 
 
 describe('Product Creation', () => {
 
-    // function cleanUpDatabase(client) {
-    //     client.cleanUp();
-    //   }
-
-    // afterAll(async () => {
-    //     cleanUpDatabase(client);
-    //   });
-
-
-      
+        afterEach(async () => {
+          await cleanProduct();
+        })
+        
     
     it('should create a product given required product data', async () => {
         await request(app)
@@ -48,3 +43,4 @@ describe('Product Creation', () => {
             });
     });
 })
+
