@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:dev": "env-cmd nodemon src/main.js",
+    "start:dev": "env-cmd nodemon --ext js,json,yaml,env src/main.js",
     "start": "node src/main.js",
     "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
   },
@@ -17,6 +17,7 @@
     "@jest/globals": "^29.3.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.12.1",
     "swagger-ui-express": "^4.6.0",
     "yamljs": "^0.3.0"
