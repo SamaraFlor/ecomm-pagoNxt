@@ -1,38 +1,38 @@
 import { randomUUID } from 'node:crypto';
 
 export const productExample = {
-    usuarioId: randomUUID(),
-    nome: 'Iphone 11',
-    valor: 5990.00,
-    quantidade: 11,
-    descricao: 'Iphone 11 Branco, 256GB, Novo, Lacrado!',
-    categoria: 'smartphones',
-    caracteristicas: [
+    user_id: randomUUID(),
+    name: 'Iphone 11',
+    value: 5990.00,
+    quantity: 11,
+    description: 'Iphone 11 Branco, 256GB, Novo, Lacrado!',
+    category: 'smartphones',
+    features: [
         {
-            nome: 'cor',
-            descricao: 'branco',
+            name: 'cor',
+            description: 'branco',
         },
         {
-            nome: 'desbloquado',
-            descricao: 'sim',
+            name: 'desbloquado',
+            description: 'sim',
         },
         {
-            nome: 'memória',
-            descricao: '8 GB',
+            name: 'memória',
+            description: '8 GB',
         },
         {
-            nome: 'armazenamento',
-            descricao: '256 GB',
+            name: 'armazenamento',
+            description: '256 GB',
         }
     ],
-    imagens: [
+    images: [
         {
             url: 'url-da-imagem.jpg',
-            descricao: 'Frente do Iphone',
+            description: 'Frente do Iphone',
         },
         {
             url: 'url-da-imagem-2.jpg',
-            descricao: 'Traseira do Iphone',
+            description: 'Traseira do Iphone',
         }
     ],
 }
