@@ -8,16 +8,11 @@ services:
       - ./product:/app
     ports:
       - 3000:3000
-  
+
   product-database:
     image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: senhamysql
-      MYSQL_DATABASE: products
-      MYSQL_USER: mysqluser
-      MYSQL_PASSWORD: mysqlpass
-    ports:
-      - 3306:3306
+    
+
 
   account:
     image: pagonxt/account
@@ -27,16 +22,12 @@ services:
       - ./account:/app
     ports:
       - 3001:3000
-
+  
   account-database:
     image: mongo
-    environment:
-      MONGO_INITDB_DATABASE: accounts
-      MONGO_INITDB_ROOT_USERNAME: mongouser
-      MONGO_INITDB_ROOT_PASSWORD: mongopass
+   
 
-    ports:
-      - 27017:27017
+
 
 
 

@@ -6,15 +6,23 @@ import {createUserTokenUseCase} from "./use-case/tokenCreate.js"
 const router = Router();
 
 router.post('/accounts', async (request, response) => {
-    const { name, email, password } = request.body;
-    const createdUser = await createUserUseCase(name, email, password);
 
-    return response.status(201).json({
-        id: createdUser._id,
-        name: createdUser.name,
-        email: createdUser.email,
-        createdDate: createdUser.createdDate,
+    const createdUser = await createUserUseCase(name, email, password);
+    const email = req.body.email;
+    isValidEmail(email, (err) => {
+        if(err) {
+            res.status(400).send(err.message);
+        } 
+        return response.status(201).json({
+            id: createdUser._id,
+            name: createdUser.name,
+            email: createdUser.email,
+            createdDate: createdUser.createdDate,
+        });
+    
     });
+    
+   
 });
 
 router.post('/tokens', async (request, response) => {
