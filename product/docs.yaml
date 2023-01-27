@@ -1,104 +1,85 @@
 openapi: 3.0.1
 info:
   version: 1.0.0
-  title: Product Restful API
-  description: Restful API that deals with Products
+  title: Accounts API
+  description: Restful API that deals with Accounts
   contact:
     name: Dev Contacts
-    email: samara@example.com
+    url: 'https://www.alura.com.br'
+    email: devs@alura.com.br
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:3001'
     description: Server 1
 paths:
-  /products:
-    summary: creates a product
-    description: 'Given provided product data, creates a product in the database'
+  /accounts:
+    summary: creates an account
+    description: 'Given provided account data, creates an account'
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProductData'
+              $ref: '#/components/schemas/CreateAccountRequest'
       responses:
         201:
-          description: Product created
+          description: Account created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreatedProductData'
-    get:
+                $ref: '#/components/schemas/AccountResponse'
+  /tokens:
+    summary: creates an account token
+    description: 'Given email and password, creates an account token'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: 
+                  type: string
+                password:
+                  type: string
       responses:
-        200:
+        201:
+          description: Token account created
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ProductData'
+                type: object
+                properties: 
+                  token:
+                    type: string
+        401:
+          description: Error with account data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:  
+                    type: string
 
 components:
   schemas:
-    ImagemData:
+    CreateAccountRequest:
       type: object
       properties:
-        url:
+        name:
           type: string
-        descricao:
+        email:
           type: string
-    CaracteristicaData:
+        password:
+          type: string
+    AccountResponse:
       type: object
       properties:
-        nome:
+        id: 
           type: string
-        descricao:
+        name:
           type: string
-    ProductData:
-      type: object
-      properties:
-        usuarioId:
-          type: string
-        nome:
-          type: string
-        descricao:
-          type: string
-        categoria:
-          type: string
-        quantidade:
-          type: integer
-        valor:
-          type: number
-        caracteristicas:
-          type: array
-          items:
-            $ref: '#/components/schemas/CaracteristicaData'
-        imagens:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImagemData'
-    CreatedProductData:
-      type: object
-      properties:
-        usuarioId:
+        email:
           type: string
         createdDate:
           type: string
-        id:
-          type: string
-        nome:
-          type: string
-        descricao:
-          type: string
-        categoria:
-          type: string
-        quantidade:
-          type: integer
-        valor:
-          type: number
-        caracteristicas:
-          type: array
-          items:
-            $ref: '#/components/schemas/CaracteristicaData'
-        imagens:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImagemData'

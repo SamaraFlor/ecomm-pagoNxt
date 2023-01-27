@@ -22,7 +22,6 @@ export async function findUserByEmail(email) {
     const user = await usersCollection.findOne({ email });
     await client.close();
     return user;
-    
 }
 
 

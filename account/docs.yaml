@@ -5,31 +5,65 @@ info:
   description: Restful API that deals with Accounts
   contact:
     name: Dev Contacts
-    email: samara@example.com
+    url: 'https://www.alura.com.br'
+    email: devs@alura.com.br
 servers:
   - url: 'http://localhost:3001'
     description: Server 1
 paths:
   /accounts:
-    summary: creates a account
-    description: 'Given provided account data, creates a account in the database'
+    summary: creates an account
+    description: 'Given provided account data, creates an account'
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountData'
+              $ref: '#/components/schemas/CreateAccountRequest'
       responses:
         201:
           description: Account created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreatedAccountData'
+                $ref: '#/components/schemas/AccountResponse'
+  /tokens:
+    summary: creates an account token
+    description: 'Given email and password, creates an account token'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: 
+                  type: string
+                password:
+                  type: string
+      responses:
+        201:
+          description: Token account created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  token:
+                    type: string
+        401:
+          description: Error with account data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:  
+                    type: string
 
 components:
   schemas:
-    AccountData:
+    CreateAccountRequest:
       type: object
       properties:
         name:
@@ -38,7 +72,7 @@ components:
           type: string
         password:
           type: string
-    CreatedAccountData:
+    AccountResponse:
       type: object
       properties:
         id: 
