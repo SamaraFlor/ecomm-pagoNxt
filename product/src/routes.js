@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { decriptToken } from './helpers/token.js';
 import { createProductUseCase } from './use-case/createProductUseCase.js';
-import {listProductsUseCase} from "./use-case/listProducts.js"
+import { listProductsUseCase } from './use-case/listProducts.js';
+
 
 const router = Router();
 
@@ -38,4 +39,3 @@ router.get('/products', async (request, response) => {
 });
 
 export { router };
-

@@ -6,9 +6,9 @@
   "scripts": {
     "start:dev": "env-cmd nodemon -e yaml,yml,js,json src/main.js",
     "start": "node src/main.js",
-    "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js  --detectOpenHandles",
-    "migrate": "npx sequelize-cli db:migrate",
-    "migrate:undo": "npx sequelize-cli db:migrate:undo"
+    "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
+    "migrate": "env-cmd npx sequelize-cli db:migrate",
+    "migrate:undo": "env-cmd npx sequelize-cli db:migrate:undo:all"
   },
   "author": "Samara Flor",
   "license": "ISC",
