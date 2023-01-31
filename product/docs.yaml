@@ -1,85 +1,164 @@
 openapi: 3.0.1
 info:
   version: 1.0.0
-  title: Accounts API
-  description: Restful API that deals with Accounts
+  title: Product Restful API
+  description: Restful API that deals with Products
   contact:
     name: Dev Contacts
     url: 'https://www.alura.com.br'
-    email: devs@alura.com.br
+    email: samara@email.com
 servers:
-  - url: 'http://localhost:3001'
+  - url: 'http://localhost:3000'
     description: Server 1
 paths:
-  /accounts:
-    summary: creates an account
-    description: 'Given provided account data, creates an account'
+  /products:
+    summary: creates a product
+    description: 'Given provided product data, creates a product in the database'
     post:
+      security:
+        - bearerAuth: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateAccountRequest'
+              $ref: '#/components/schemas/CreateProductRequest'
       responses:
         201:
-          description: Account created
+          description: Product created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
-  /tokens:
-    summary: creates an account token
-    description: 'Given email and password, creates an account token'
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email: 
-                  type: string
-                password:
-                  type: string
-      responses:
-        201:
-          description: Token account created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: 
-                  token:
-                    type: string
-        401:
-          description: Error with account data
+                $ref: '#/components/schemas/ProductResponse'
+        400:
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  message:  
+                  message:
                     type: string
+        401:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        403:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    get:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+        
+          
 
 components:
+  securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
-    CreateAccountRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-    AccountResponse:
+    ImageResponse:
       type: object
       properties:
         id: 
+          type: integer
+        url:
+          type: string
+        description:
+          type: string
+        createdDate:
+          type: string
+        updatedDate:
+          type: string
+    FeatureResponse:
+      type: object
+      properties:
+        id: 
+          type: integer 
+        name:
+          type: string
+        description:
+          type: string
+        createdDate:
+          type: string
+        updatedDate:
+          type: string
+    ProductResponse:
+      type: object
+      properties:
+        id: 
+          type: integer
+        user_id: 
           type: string
         name:
           type: string
-        email:
+        description:
           type: string
+        category:
+          type: string
+        quantity:
+          type: integer
+        value:
+          type: number
         createdDate:
+          type: string
+        updatedDate:
+          type: string
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureResponse'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageResponse'
+    CreateProductRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        quantity:
+          type: integer
+        value:
+          type: number
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateFeatureRequest'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateImageRequest'
+    CreateImageRequest:
+      type: object
+      properties:
+        url:
+          type: string
+        description:
+          type: string
+    CreateFeatureRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
           type: string
