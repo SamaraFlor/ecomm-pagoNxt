@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../src/app.js';
-import { client, getUsersCollection } from '../../src/repositories/accountRepository.js';
+import { client,getUsersCollection } from '../../src/repositories/accountRepository.js';
 import { createUserUseCase } from '../../src/use-case/createUserAccount.js';
 
 
@@ -13,12 +13,12 @@ describe('Account Creation', () => {
     });
 
     it('should generate a token given correct account data', async () => {
-        await createUserUseCase('Carolina', 'lina@pagonxt.com', 'senhafácil');
+        await createUserUseCase('Camila', 'camila@email.com', 'senhafácil');
         await request(app)
             .post('/tokens')
             .set('Content-Type', 'application/json')
             .set('Accetp', 'application/json')
-            .send({ email: 'lina@pagonxt.com', password: 'senhafácil' })
+            .send({ email: 'camila@email.com', password: 'senhafácil' })
             .expect(201)
             .expect(({ body }) => {
                 expect(body).toEqual({ token: expect.any(String) });
@@ -26,12 +26,12 @@ describe('Account Creation', () => {
     });
 
     it('should not generate a token given incorrect password account', async () => {
-        await createUserUseCase('Carolina', 'lina@pagonxt.com', 'senhafácil');
+        await createUserUseCase('Camila', 'camila@email.com', 'senhafácil');
         await request(app)
             .post('/tokens')
             .set('Content-Type', 'application/json')
             .set('Accetp', 'application/json')
-            .send({ email: 'lina@pagonxt.com', password: 'senhafacil' })
+            .send({ email: 'camila@email.com', password: 'senhafacil' })
             .expect(401)
             .expect(({ body }) => {
                 expect(body).toEqual({ message: 'user e-mail or password incorrect' });
@@ -39,12 +39,12 @@ describe('Account Creation', () => {
     })
 
     it('should not generate a token given incorrect email account', async () => {
-        await createUserUseCase('Carolina', 'lina@pagonxt.com', 'senhafácil');
+        await createUserUseCase('Camila', 'camila@email.com', 'senhafacil');
         await request(app)
             .post('/tokens')
             .set('Content-Type', 'application/json')
             .set('Accetp', 'application/json')
-            .send({ email: 'lina@pagont.com', password: 'senhafácil' })
+            .send({ email: 'camila@email.com', password: 'senhafaci' })
             .expect(401)
             .expect(({ body }) => {
                 expect(body).toEqual({ message: 'user e-mail or password incorrect' });
@@ -56,7 +56,7 @@ describe('Account Creation', () => {
             .post('/tokens')
             .set('Content-Type', 'application/json')
             .set('Accetp', 'application/json')
-            .send({ email: 'lina@pagonxt.com', password: 'senhafácil' })
+            .send({ email: 'camila@email.com', password: 'senhafácil' })
             .expect(401)
             .expect(({ body }) => {
                 expect(body).toEqual({ message: 'user e-mail or password incorrect' });
