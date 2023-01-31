@@ -1,3 +1,4 @@
+
 version: '3'
 services:
   product:
@@ -37,6 +38,10 @@ services:
 
     ports:
       - 27017:27017
+
+   
+
+
 
 
 

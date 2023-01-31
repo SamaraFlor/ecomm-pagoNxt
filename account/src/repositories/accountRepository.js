@@ -21,6 +21,13 @@ export async function findUserByEmail(email) {
     const usersCollection = await getUsersCollection(client);
     const user = await usersCollection.findOne({ email });
     await client.close();
-    return user;
-    
+    return user;  
 }
+
+export async function existsByEmail(email) {
+    const possibleUser = await findUserByEmail(email);
+    //converter o possivel resultado para booleano, converte "",undefined,null
+    return !!possibleUser;
+}
+
+

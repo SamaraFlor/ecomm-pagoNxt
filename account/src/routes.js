@@ -1,20 +1,27 @@
 import { Router } from "express";
 import { createUserUseCase } from "./use-case/createUserAccount.js";
-import {createUserTokenUseCase} from "./use-case/tokenCreate.js"
+import { createUserTokenUseCase } from "./use-case/tokenCreate.js";
+
 
 
 const router = Router();
 
 router.post('/accounts', async (request, response) => {
-    const { name, email, password } = request.body;
-    const createdUser = await createUserUseCase(name, email, password);
-
-    return response.status(201).json({
-        id: createdUser._id,
-        name: createdUser.name,
-        email: createdUser.email,
-        createdDate: createdUser.createdDate,
-    });
+    try {
+        const { name, email, password } = request.body;
+        const createdUser = await createUserUseCase(name, email, password);
+        
+        return response.status(201).json({
+            id: createdUser._id,
+            name: createdUser.name,
+            email: createdUser.email,
+            createdDate: createdUser.createdDate,
+        });
+    } catch (e) {
+        return response.status(400).json({
+            message: e.message
+        });
+    }
 });
 
 router.post('/tokens', async (request, response) => {
@@ -32,6 +39,4 @@ router.post('/tokens', async (request, response) => {
     });
 });
 
-
-
-export {router}
+export { router };
