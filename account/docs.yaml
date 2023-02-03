@@ -5,8 +5,8 @@ info:
   description: Restful API that deals with Accounts
   contact:
     name: Dev Contacts
-    url: 'https://www.alura.com.br'
-    email: devs@alura.com.br
+    url: 'https://github.com/SamaraFlor/ecomm-pagoNxt'
+    email: samara@pagonxt.com
 servers:
   - url: 'http://localhost:3001'
     description: Server 1
@@ -27,6 +27,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountResponse'
+        400:
+          description: Account not created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  property: 
+                    type: string
   /tokens:
     summary: creates an account token
     description: 'Given email and password, creates an account token'

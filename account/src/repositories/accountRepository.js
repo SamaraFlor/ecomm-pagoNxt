@@ -26,8 +26,5 @@ export async function findUserByEmail(email) {
 
 export async function existsByEmail(email) {
     const possibleUser = await findUserByEmail(email);
-    //converter o possivel resultado para booleano, converte "",undefined,null
     return !!possibleUser;
 }
-
-
